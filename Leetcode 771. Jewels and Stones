@@ -2,22 +2,20 @@ class Solution {
 public:
     int numJewelsInStones(string jewels, string stones) {
         
-        map<char , int>mp;
-
-        for(auto i : stones){
-            mp[i]++;
+        unordered_set<char>st;
+        
+        for(char ch : jewels){
+            st.insert(ch);
         }
-
-        int count = 0;
-
-        for(auto i : mp){
-
-            for(int j = 0; j < jewels.size() ; j++){
-                 
-                 if(jewels[j] == i.first)
-                 count += i.second;
+        
+        int ans = 0;
+        
+        for(char ch : stones){
+            if(st.find(ch) != st.end()){
+                ans++;
             }
         }
-        return count;
+        
+        return ans;
     }
 };
